@@ -1,0 +1,19 @@
+{
+  "name": "auto-clipboard",
+  "owner": {
+    "name": "Diego Meijide (AGENCIA RSE)",
+    "url": "https://agenciarse.com"
+  },
+  "metadata": {
+    "description": "Auto Clipboard: Claude copies to your clipboard whatever it gives you to paste."
+  },
+  "plugins": [
+    {
+      "name": "auto-clipboard",
+      "source": "./",
+      "description": "Claude copies to your clipboard whatever it gives you to paste: commands, code, emails, texts, paths, URLs. Generated passwords never appear in the chat.",
+      "version": "1.0.0",
+      "category": "productivity"
+    }
+  ]
+}

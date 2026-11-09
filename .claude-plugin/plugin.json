@@ -1,0 +1,13 @@
+{
+  "name": "auto-clipboard",
+  "version": "1.0.0",
+  "description": "Claude copies to your clipboard whatever it gives you to paste: commands, code, emails, texts, paths, URLs. Generated passwords never appear in the chat.",
+  "author": {
+    "name": "Diego Meijide (AGENCIA RSE)",
+    "url": "https://agenciarse.com"
+  },
+  "homepage": "https://github.com/agenciaRSE/auto-clipboard",
+  "repository": "https://github.com/agenciaRSE/auto-clipboard",
+  "license": "MIT",
+  "keywords": ["clipboard", "copy", "terminal", "password", "productivity"]
+}
