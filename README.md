@@ -4,7 +4,7 @@
 
 Commands to run, code snippets, emails, messages, texts for a website, paths, URLs, config blocks, SQL queries. Claude shows the text and puts it on your clipboard at the same time. Generated passwords are created on your machine and never appear in the chat.
 
-[English](#why) · [Español](#-en-español)
+[English](#why) · [Español](#-en-español) · [Website](https://agenciarse.com/en/claude-skills/auto-clipboard/)
 
 ## Why
 
@@ -90,5 +90,7 @@ Comandos, fragmentos de código, emails, mensajes, textos para la web, rutas, UR
 **Instalación en Claude Desktop:** descarga `auto-clipboard.zip` de la [última versión](https://github.com/agenciaRSE/auto-clipboard/releases/latest) y súbelo en **Ajustes → Capacidades → Skills**. En los chats de Claude Desktop y claude.ai la skill se ejecuta en la nube, sin acceso a tu portapapeles. Ahí pone cada texto en su propio bloque de código, con su botón de copiar. En la pestaña **Code** de Claude Desktop funciona completa.
 
 **Sustituye a AI Terminal Code Cleaner**, la app que limpiaba los snippets después de copiarlos. Auto Clipboard evita el problema antes de que ocurra.
+
+Más información en [agenciarse.com](https://agenciarse.com/skills-claude/auto-clipboard/).
 
 Hecho por [AGENCIA RSE](https://agenciarse.com). Licencia MIT.

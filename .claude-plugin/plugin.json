@@ -6,8 +6,14 @@
     "name": "Diego Meijide (AGENCIA RSE)",
     "url": "https://agenciarse.com"
   },
-  "homepage": "https://github.com/agenciaRSE/auto-clipboard",
+  "homepage": "https://agenciarse.com/en/claude-skills/auto-clipboard/",
   "repository": "https://github.com/agenciaRSE/auto-clipboard",
   "license": "MIT",
-  "keywords": ["clipboard", "copy", "terminal", "password", "productivity"]
+  "keywords": [
+    "clipboard",
+    "copy",
+    "terminal",
+    "password",
+    "productivity"
+  ]
 }
