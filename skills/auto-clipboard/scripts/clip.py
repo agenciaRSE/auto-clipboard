@@ -5,6 +5,9 @@ Standard library only. Windows, macOS, Linux (Wayland/X11) and WSL.
 
   python clip.py [FILE]                 copy FILE, or stdin, as UTF-8 text
   python clip.py --sensitive [FILE]     same, kept out of clipboard history and cloud sync
+  python clip.py --steps [FILE]         several pieces separated by a line "---8<---":
+                                        step 1 ends on the clipboard and, on Windows,
+                                        the rest follow it in order in Win+V history
   python clip.py --password [-n 24] [--no-symbols]
                                         generate a password, copy it as sensitive,
                                         never print it
@@ -19,6 +22,21 @@ import sys
 import time
 
 SYMBOLS = "!#%+-.:=?@_~"  # shell-safe in quotes and accepted by most password rules
+STEP_SEPARATOR = "---8<---"
+HISTORY_GAP = 0.7  # seconds between copies so Win+V history keeps each one as its own entry
+
+
+def split_steps(text):
+    """Pieces separated by a line that is exactly STEP_SEPARATOR, empty pieces dropped."""
+    steps, cur = [], []
+    for line in text.split("\n"):
+        if line.strip() == STEP_SEPARATOR:
+            steps.append("\n".join(cur).strip("\n"))
+            cur = []
+        else:
+            cur.append(line)
+    steps.append("\n".join(cur).strip("\n"))
+    return [st for st in steps if st.strip()]
 
 
 def make_password(length=24, symbols=True):
@@ -121,6 +139,7 @@ def main(argv=None):
     p = argparse.ArgumentParser(description="Copy text to the clipboard.")
     p.add_argument("file", nargs="?", help="file to copy (default: stdin)")
     p.add_argument("--sensitive", action="store_true", help="keep out of clipboard history and cloud sync")
+    p.add_argument("--steps", action="store_true", help=f"copy pieces separated by a '{STEP_SEPARATOR}' line, step 1 last")
     p.add_argument("--password", action="store_true", help="generate a password and copy it, never print it")
     p.add_argument("-n", "--length", type=int, default=24, help="password length (default 24)")
     p.add_argument("--no-symbols", action="store_true", help="password with letters and digits only")
@@ -140,6 +159,16 @@ def main(argv=None):
     if not text:
         print("Nothing to copy: input is empty.", file=sys.stderr)
         return 1
+    if a.steps:
+        steps = split_steps(text)
+        # Last copied = current clipboard and top of Win+V, so copy in reverse: step 1 ends on top.
+        for i, st in enumerate(reversed(steps)):
+            if i:
+                time.sleep(HISTORY_GAP)
+            copy(st, a.sensitive)
+        where = "the others follow it in Win+V history" if sys.platform == "win32" else "only step 1 is kept (no clipboard history)"
+        print(f"Copied {len(steps)} steps: step 1 is on the clipboard, {where}.")
+        return 0
     copy(text, a.sensitive)
     print(f"Copied {len(text)} characters" + (" (kept out of clipboard history)." if a.sensitive else "."))
     return 0

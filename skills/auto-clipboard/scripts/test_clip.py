@@ -20,6 +20,9 @@ try:
 except ValueError:
     pass
 
+assert clip.split_steps("a\n---8<---\n\nb c\n  ---8<---  \n\n---8<---\nd") == ["a", "b c", "d"]
+assert clip.split_steps("solo") == ["solo"]
+
 if sys.platform == "win32":
     sample = 'git commit -m "año ñ €"\nsecond line ✓'
     clip.copy(sample)

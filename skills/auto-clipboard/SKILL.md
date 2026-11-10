@@ -23,7 +23,11 @@ Do not copy:
 - code you already wrote into files with your own tools
 - long output the user only reads (logs, reports, explanations)
 
-Several pieces in one reply: copy the one the user will use first and say which. Copy the others when asked.
+Several pieces in one reply:
+
+- **Steps the user runs in order** (a command, then a path to paste into its prompt, then another command): copy them all with `--steps` (see How to copy). Step 1 ends on the clipboard and the rest wait in order in Win+V history. Number them the same way in the reply.
+- Commands that run back to back in the same shell, with no prompt in between: join them into one line with `;` (PowerShell, or `&&` in bash) and copy that line.
+- Unrelated alternatives: copy the one the user will most likely use and say which.
 
 ## How to copy
 
@@ -36,6 +40,8 @@ Copy the exact text, ready to paste:
 
 Then still show the text in the reply, and add one line in the user's language, for example `📋 Copied to clipboard` or `📋 Copiado al portapapeles`.
 
+**Write that line only after the copy command ran and succeeded in this same turn.** Writing it without the tool call, or after a call that was refused or failed, tells the user something false, and they paste stale text. If the call did not run, say so and give the text in its own code block.
+
 Use the first method that your tools allow:
 
 1. **Script** (any OS with Python 3). Pass the text on stdin with a quoted heredoc, so the shell expands nothing. Pick a delimiter that does not appear in the text:
@@ -47,6 +53,20 @@ Use the first method that your tools allow:
    ```
 
    Use `python3` or `py` when `python` is not found. For a long text, write it to a temporary file and run `clip.py <file>`.
+
+   For steps in order, add `--steps` and separate the pieces with a line `---8<---`:
+
+   ```bash
+   python "<this skill's directory>/scripts/clip.py" --steps <<'CLIP_END'
+   first command
+   ---8<---
+   C:\path\to\paste\in\its\prompt
+   ---8<---
+   second command
+   CLIP_END
+   ```
+
+   Tell the user: step 1 is on the clipboard; open Win+V for the next ones (Windows clipboard history must be on: Settings > System > Clipboard). Without history, copy each next step when they ask.
 
 2. **PowerShell tool on Windows** (no Python needed). Use a single-quoted here-string; the closing `'@` must be at column 0:
 
