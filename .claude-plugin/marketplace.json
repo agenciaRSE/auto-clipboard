@@ -12,7 +12,7 @@
       "name": "auto-clipboard",
       "source": "./",
       "description": "Claude copies to your clipboard whatever it gives you to paste: commands, code, emails, texts, paths, URLs. Generated passwords never appear in the chat.",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "category": "productivity"
     }
   ]

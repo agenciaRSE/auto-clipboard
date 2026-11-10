@@ -1,6 +1,6 @@
 {
   "name": "auto-clipboard",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Claude copies to your clipboard whatever it gives you to paste: commands, code, emails, texts, paths, URLs. Generated passwords never appear in the chat.",
   "author": {
     "name": "Diego Meijide (AGENCIA RSE)",
