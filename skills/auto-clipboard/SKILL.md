@@ -37,6 +37,7 @@ Copy the exact text, ready to paste:
 - keep a leading `!` when the text is for the Claude Code prompt
 - straight ASCII quotes and dashes in commands and code (`"` `'` `--`), never typographic ones
 - no trailing newline, so a pasted command does not run before the user reviews it
+- a command the user runs in their own terminal starts with `cd "<absolute path>";` (or `&&` in bash) whenever it depends on the folder, so it works whatever directory their terminal is in. A `!` command for the Claude Code prompt needs it too when the session's folder is not the right one
 
 Then still show the text in the reply, and add one line in the user's language, for example `📋 Copied to clipboard` or `📋 Copiado al portapapeles`.
 
