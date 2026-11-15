@@ -19,6 +19,7 @@ Auto Clipboard fixes it at the source: you never copy from the terminal again.
 - **Generates passwords locally**: `clip.py --password` creates the password with Python's `secrets`, copies it, and never prints it. The password never passes through the model or the chat history.
 - **Keeps secrets out of clipboard history**: on Windows, passwords and keys copied with `--sensitive` stay out of the Win+V history and cloud clipboard sync.
 - **Keeps accents and emoji intact** on Windows, where `clip.exe` and PowerShell pipes break them.
+- **Never claims a copy it did not make** (Claude Code plugin): a `Stop` hook checks each turn. If Claude wrote `📋 Copied to clipboard`, or handed you a `!` command, without running a copy, the turn is sent back once so it copies first.
 - **Skips what you don't need**: illustrative examples, code already written to files, long logs.
 
 ## Install
@@ -84,6 +85,7 @@ Comandos, fragmentos de código, emails, mensajes, textos para la web, rutas, UR
 - Genera las contraseñas en local: no pasan por el modelo ni quedan en la conversación.
 - En Windows, las contraseñas y claves no quedan en el historial del portapapeles (Win+V) ni se sincronizan en la nube.
 - Respeta acentos, ñ y emoji en Windows.
+- Nunca anuncia una copia que no hizo (plugin de Claude Code): un hook `Stop` revisa cada turno. Si Claude escribe `📋 Copiado al portapapeles`, o te da un comando `!`, sin haber copiado, le devuelve el turno una vez para que copie antes.
 
 **Instalación en Claude Code:** `/plugin marketplace add agenciaRSE/auto-clipboard` y después `/plugin install auto-clipboard@auto-clipboard`. También puedes copiar `skills/auto-clipboard` en `~/.claude/skills/`.
 

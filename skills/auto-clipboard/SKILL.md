@@ -41,7 +41,7 @@ Copy the exact text, ready to paste:
 
 Then still show the text in the reply, and add one line in the user's language, for example `📋 Copied to clipboard` or `📋 Copiado al portapapeles`.
 
-**Write that line only after the copy command ran and succeeded in this same turn.** Writing it without the tool call, or after a call that was refused or failed, tells the user something false, and they paste stale text. If the call did not run, say so and give the text in its own code block.
+**Write that line only after the copy command ran and succeeded in this same turn.** Writing it without the tool call, or after a call that was refused or failed, tells the user something false, and they paste stale text. If the call did not run, say so and give the text in its own code block. When installed as a Claude Code plugin, a `Stop` hook (`hooks/check_copy.py`) sends the turn back if the reply claims a copy, or gives a `!` command, with no copy command in that turn.
 
 Use the first method that your tools allow:
 
